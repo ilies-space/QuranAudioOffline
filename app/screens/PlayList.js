@@ -1,6 +1,12 @@
 import React from 'react';
-import {View, Text, FlatList, Button} from 'react-native';
-export default function PlayList() {
+import {
+  View,
+  Text,
+  FlatList,
+  Button,
+  TouchableWithoutFeedback,
+} from 'react-native';
+export default function PlayList({navigation}) {
   const QuranList = [
     {
       surah: 'Fatiha',
@@ -68,22 +74,27 @@ export default function PlayList() {
         data={QuranList}
         renderItem={({item}) => {
           return (
-            <View
-              style={{
-                flexDirection: 'row',
-                padding: 10,
+            <TouchableWithoutFeedback
+              onPress={() => {
+                navigation.push('Player');
               }}>
-              <View style={{flex: 1}}>
-                <Text> {item.surah} </Text>
-                <Text> {item.reader} </Text>
-              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  padding: 10,
+                }}>
+                <View style={{flex: 1}}>
+                  <Text> {item.surah} </Text>
+                  <Text> {item.reader} </Text>
+                </View>
 
-              {item.playing ? (
-                <Button title={'PAUSE'} />
-              ) : (
-                <Button title={'PLAY'} />
-              )}
-            </View>
+                {item.playing ? (
+                  <Button title={'PAUSE'} />
+                ) : (
+                  <Button title={'PLAY'} />
+                )}
+              </View>
+            </TouchableWithoutFeedback>
           );
         }}
       />
