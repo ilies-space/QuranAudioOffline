@@ -5,6 +5,7 @@ import Player from './app/screens/Player';
 export default function App() {
   return (
     <View>
+      <Player />
       <PlayList />
     </View>
   );
