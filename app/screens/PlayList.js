@@ -227,8 +227,7 @@ export default function PlayList({navigation}) {
                           }}>
                           <View style={{flex: 1}}>
                             <Text style={{color: Colors.dark}}>
-                              {' '}
-                              {item.surah}{' '}
+                              {item.surah}
                             </Text>
                             <Text style={{color: Colors.gray}}>
                               {item.reader}
@@ -280,10 +279,7 @@ export default function PlayList({navigation}) {
                           flexDirection: 'row',
                         }}>
                         <View style={{flex: 1}}>
-                          <Text style={{color: Colors.dark}}>
-                            {' '}
-                            {item.surah}{' '}
-                          </Text>
+                          <Text style={{color: Colors.dark}}>{item.surah}</Text>
                           <Text style={{color: Colors.gray}}>
                             {item.reader}
                           </Text>
