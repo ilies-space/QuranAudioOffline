@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,9 @@ import { Colors } from '../theme/Colors';
 import { NeomorphBlur,Neomorph } from 'react-native-neomorph-shadows';
 
 export default function PlayList({navigation}) {
+
+
+  const [selectedAudioName, setselectedAudioName] = useState("")
   const QuranList = [
     {
       surah: 'Fatiha',
@@ -17,22 +20,22 @@ export default function PlayList({navigation}) {
       playing: false,
     },
     {
-      surah: 'Moulk',
+      surah: 'baqara',
       reader: 'Ahmed',
       playing: true,
     },
     {
-      surah: 'Fatiha',
+      surah: 'ikhlas',
       reader: 'Ahmed',
       playing: false,
     },
     {
-      surah: 'Moulk',
+      surah: 'rahman',
       reader: 'Ahmed',
       playing: false,
     },
     {
-      surah: 'Fatiha',
+      surah: 'insan',
       reader: 'Ahmed',
       playing: false,
     },
@@ -166,10 +169,72 @@ export default function PlayList({navigation}) {
                   <Text> {item.reader} </Text>
                 </View>
 
-                {item.playing ? (
-                  <Button title={'PAUSE'} />
+                { selectedAudioName == item.surah ? (
+                                <NeomorphBlur
+  style={{
+    shadowRadius: 3,
+    borderRadius: 25,
+    backgroundColor: Colors.blue,
+    width: 50,
+    height: 50,
+  }}
+>
+  
+
+                  <TouchableWithoutFeedback
+
+                  onPress = {()=>{
+                    setselectedAudioName("")
+                  }}
+>
+  <View
+  style ={{
+    alignItems:'center',
+    justifyContent:'center',
+    flex:1
+  }}
+  >
+<Text style ={{color:"white"}}>PAUSE</Text>
+
+  </View>
+</TouchableWithoutFeedback>
+</NeomorphBlur>
+
                 ) : (
-                  <Button title={'PLAY'} />
+                 
+
+
+                  <NeomorphBlur
+  style={{
+    shadowRadius: 3,
+    borderRadius: 25,
+    backgroundColor: Colors.white,
+    width: 50,
+    height: 50,
+  }}
+>
+
+<TouchableWithoutFeedback
+
+onPress = {()=>{
+  console.log("PLAY ... ");
+  setselectedAudioName(item.surah)
+}}
+>
+  <View
+  style ={{
+    alignItems:'center',
+    justifyContent:'center',
+    flex:1
+  }}
+  >
+<Text
+style ={{color:Colors.gray}}
+>play</Text>
+
+  </View>
+</TouchableWithoutFeedback>
+</NeomorphBlur>
                 )}
               </View>
             </TouchableWithoutFeedback>
