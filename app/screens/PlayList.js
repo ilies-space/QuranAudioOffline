@@ -112,14 +112,17 @@ export default function PlayList({navigation}) {
             width: 70,
             height: 70,
           }}>
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              console.log('LIKE');
+            }}>
             <View
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
                 flex: 1,
               }}>
-              <Text>like</Text>
+              <AntDesign name="heart" size={18} color={Colors.gray} />
             </View>
           </TouchableWithoutFeedback>
         </NeomorphBlur>
@@ -171,7 +174,7 @@ export default function PlayList({navigation}) {
                 justifyContent: 'center',
                 flex: 1,
               }}>
-              <Text>menu</Text>
+              <AntDesign name="ellipsis1" size={20} color={Colors.gray} />
             </View>
           </TouchableWithoutFeedback>
         </NeomorphBlur>
