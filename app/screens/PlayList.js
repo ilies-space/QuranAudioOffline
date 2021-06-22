@@ -6,6 +6,9 @@ import {
   Button,
   TouchableWithoutFeedback,
 } from 'react-native';
+import { Colors } from '../theme/Colors';
+import { NeomorphBlur,Neomorph } from 'react-native-neomorph-shadows';
+
 export default function PlayList({navigation}) {
   const QuranList = [
     {
@@ -40,9 +43,16 @@ export default function PlayList({navigation}) {
     },
   ];
   return (
-    <View>
+    <View style = {{
+      flex:1,
+      backgroundColor:Colors.white
+    }}>
       <View style={{alignItems: 'center', margin: 10}}>
-        <Text>Mulk - ahmed</Text>
+        <Text
+        style ={{
+          color:"gray"
+        }}
+        >Mulk - ahmed</Text>
       </View>
 
       {/* Audio INFO  */}
@@ -53,9 +63,32 @@ export default function PlayList({navigation}) {
           flexDirection: 'row',
           justifyContent: 'space-around',
         }}>
-        <Button title={'like'} />
 
-        <View
+<NeomorphBlur
+  style={{
+    shadowRadius: 6,
+    borderRadius: 35,
+    backgroundColor: Colors.white,
+    width: 70,
+    height: 70,
+  }}
+>
+
+<TouchableWithoutFeedback >
+  <View
+  style ={{
+    alignItems:'center',
+    justifyContent:'center',
+    flex:1
+  }}
+  >
+<Text>like</Text>
+
+  </View>
+</TouchableWithoutFeedback>
+</NeomorphBlur>
+
+        {/* <View
           style={{
             backgroundColor: 'gray',
             height: 150,
@@ -65,8 +98,53 @@ export default function PlayList({navigation}) {
             justifyContent: 'center',
           }}>
           <Text>IMG</Text>
-        </View>
-        <Button title={'menu'} />
+        </View> */}
+
+        <Neomorph
+  inner // <- enable shadow inside of neomorph
+  swapShadows // <- change zIndex of each shadow color
+  style={{
+    shadowRadius: 10,
+    borderRadius: 150/2,
+    backgroundColor: Colors.white,
+    width: 150,
+    height: 150,
+  }}
+>
+<View style ={{
+  alignItems:'center',
+  justifyContent:'center',
+  flex:1
+}}>
+<Text>IMG</Text>
+</View>
+  
+</Neomorph>
+
+        <NeomorphBlur
+  style={{
+    shadowRadius: 6,
+    borderRadius: 35,
+    backgroundColor: Colors.white,
+    width: 70,
+    height: 70,
+  }}
+>
+
+<TouchableWithoutFeedback >
+  <View
+  style ={{
+    alignItems:'center',
+    justifyContent:'center',
+    flex:1
+  }}
+  >
+<Text>menu</Text>
+
+  </View>
+</TouchableWithoutFeedback>
+</NeomorphBlur>
+
       </View>
 
       <FlatList

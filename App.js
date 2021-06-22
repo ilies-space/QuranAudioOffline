@@ -9,7 +9,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="PlayList" component={PlayList} />
+        <Stack.Screen 
+        options = {{
+          headerShown:false
+        }}
+        name="PlayList" component={PlayList} />
         <Stack.Screen name="Player" component={Player} />
       </Stack.Navigator>
     </NavigationContainer>
