@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   FlatList,
   Button,
   TouchableWithoutFeedback,
+  Dimensions,
 } from 'react-native';
-import { Colors } from '../theme/Colors';
-import { NeomorphBlur,Neomorph } from 'react-native-neomorph-shadows';
+import {Colors} from '../theme/Colors';
+import {NeomorphBlur, Neomorph} from 'react-native-neomorph-shadows';
 
 export default function PlayList({navigation}) {
-
-
-  const [selectedAudioName, setselectedAudioName] = useState("")
+  const [selectedAudioName, setselectedAudioName] = useState('');
   const QuranList = [
     {
       surah: 'Fatiha',
@@ -45,17 +44,22 @@ export default function PlayList({navigation}) {
       playing: false,
     },
   ];
+
+  const phonewidth = Dimensions.get('window').width;
+
   return (
-    <View style = {{
-      flex:1,
-      backgroundColor:Colors.white
-    }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: Colors.white,
+      }}>
       <View style={{alignItems: 'center', margin: 10}}>
         <Text
-        style ={{
-          color:"gray"
-        }}
-        >Mulk - ahmed</Text>
+          style={{
+            color: 'gray',
+          }}>
+          Mulk - ahmed
+        </Text>
       </View>
 
       {/* Audio INFO  */}
@@ -66,30 +70,25 @@ export default function PlayList({navigation}) {
           flexDirection: 'row',
           justifyContent: 'space-around',
         }}>
-
-<NeomorphBlur
-  style={{
-    shadowRadius: 6,
-    borderRadius: 35,
-    backgroundColor: Colors.white,
-    width: 70,
-    height: 70,
-  }}
->
-
-<TouchableWithoutFeedback >
-  <View
-  style ={{
-    alignItems:'center',
-    justifyContent:'center',
-    flex:1
-  }}
-  >
-<Text>like</Text>
-
-  </View>
-</TouchableWithoutFeedback>
-</NeomorphBlur>
+        <NeomorphBlur
+          style={{
+            shadowRadius: 6,
+            borderRadius: 35,
+            backgroundColor: Colors.white,
+            width: 70,
+            height: 70,
+          }}>
+          <TouchableWithoutFeedback>
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                flex: 1,
+              }}>
+              <Text>like</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </NeomorphBlur>
 
         {/* <View
           style={{
@@ -104,50 +103,44 @@ export default function PlayList({navigation}) {
         </View> */}
 
         <Neomorph
-  inner // <- enable shadow inside of neomorph
-  swapShadows // <- change zIndex of each shadow color
-  style={{
-    shadowRadius: 10,
-    borderRadius: 150/2,
-    backgroundColor: Colors.white,
-    width: 150,
-    height: 150,
-  }}
->
-<View style ={{
-  alignItems:'center',
-  justifyContent:'center',
-  flex:1
-}}>
-<Text>IMG</Text>
-</View>
-  
-</Neomorph>
+          inner // <- enable shadow inside of neomorph
+          swapShadows // <- change zIndex of each shadow color
+          style={{
+            shadowRadius: 10,
+            borderRadius: 150 / 2,
+            backgroundColor: Colors.white,
+            width: 150,
+            height: 150,
+          }}>
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              flex: 1,
+            }}>
+            <Text>IMG</Text>
+          </View>
+        </Neomorph>
 
         <NeomorphBlur
-  style={{
-    shadowRadius: 6,
-    borderRadius: 35,
-    backgroundColor: Colors.white,
-    width: 70,
-    height: 70,
-  }}
->
-
-<TouchableWithoutFeedback >
-  <View
-  style ={{
-    alignItems:'center',
-    justifyContent:'center',
-    flex:1
-  }}
-  >
-<Text>menu</Text>
-
-  </View>
-</TouchableWithoutFeedback>
-</NeomorphBlur>
-
+          style={{
+            shadowRadius: 6,
+            borderRadius: 35,
+            backgroundColor: Colors.white,
+            width: 70,
+            height: 70,
+          }}>
+          <TouchableWithoutFeedback>
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                flex: 1,
+              }}>
+              <Text>menu</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </NeomorphBlur>
       </View>
 
       <FlatList
@@ -155,89 +148,112 @@ export default function PlayList({navigation}) {
         data={QuranList}
         renderItem={({item}) => {
           return (
-            <TouchableWithoutFeedback
-              onPress={() => {
-                navigation.push('Player');
+            <View
+              style={{
+                marginHorizontal: 15,
+                padding: 5,
+                marginVertical: 5,
               }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  padding: 10,
-                }}>
-                <View style={{flex: 1}}>
-                  <Text> {item.surah} </Text>
-                  <Text> {item.reader} </Text>
-                </View>
+              {selectedAudioName == item.surah ? (
+                //  AudiocurrentlyPlaying
+                <Neomorph
+                  style={{
+                    shadowRadius: 2,
+                    borderRadius: 10,
+                    backgroundColor: Colors.blue2,
+                    width: phonewidth - 30,
+                    height: 60,
+                    padding: 8,
+                    marginLeft: -5,
+                  }}>
+                  <View>
+                    <TouchableWithoutFeedback
+                      onPress={() => {
+                        navigation.push('Player');
+                      }}>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                        }}>
+                        <View style={{flex: 1}}>
+                          <Text style={{color: Colors.dark}}>
+                            {' '}
+                            {item.surah}{' '}
+                          </Text>
+                          <Text style={{color: Colors.gray}}>
+                            {item.reader}
+                          </Text>
+                        </View>
 
-                { selectedAudioName == item.surah ? (
-                                <NeomorphBlur
-  style={{
-    shadowRadius: 3,
-    borderRadius: 25,
-    backgroundColor: Colors.blue,
-    width: 50,
-    height: 50,
-  }}
->
-  
-
+                        <NeomorphBlur
+                          style={{
+                            shadowRadius: 3,
+                            borderRadius: 23,
+                            backgroundColor: Colors.blue,
+                            width: 45,
+                            height: 45,
+                          }}>
+                          <TouchableWithoutFeedback
+                            onPress={() => {
+                              setselectedAudioName('');
+                            }}>
+                            <View
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flex: 1,
+                              }}>
+                              <Text style={{color: 'white'}}>PAUSE</Text>
+                            </View>
+                          </TouchableWithoutFeedback>
+                        </NeomorphBlur>
+                      </View>
+                    </TouchableWithoutFeedback>
+                  </View>
+                </Neomorph>
+              ) : (
+                //  not playing audio
+                <View style={{}}>
                   <TouchableWithoutFeedback
-
-                  onPress = {()=>{
-                    setselectedAudioName("")
-                  }}
->
-  <View
-  style ={{
-    alignItems:'center',
-    justifyContent:'center',
-    flex:1
-  }}
-  >
-<Text style ={{color:"white"}}>PAUSE</Text>
-
-  </View>
-</TouchableWithoutFeedback>
-</NeomorphBlur>
-
-                ) : (
-                 
-
-
-                  <NeomorphBlur
-  style={{
-    shadowRadius: 3,
-    borderRadius: 25,
-    backgroundColor: Colors.white,
-    width: 50,
-    height: 50,
-  }}
->
-
-<TouchableWithoutFeedback
-
-onPress = {()=>{
-  console.log("PLAY ... ");
-  setselectedAudioName(item.surah)
-}}
->
-  <View
-  style ={{
-    alignItems:'center',
-    justifyContent:'center',
-    flex:1
-  }}
-  >
-<Text
-style ={{color:Colors.gray}}
->play</Text>
-
-  </View>
-</TouchableWithoutFeedback>
-</NeomorphBlur>
-                )}
-              </View>
-            </TouchableWithoutFeedback>
+                    onPress={() => {
+                      navigation.push('Player');
+                    }}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                      }}>
+                      <View style={{flex: 1}}>
+                        <Text style={{color: Colors.dark}}> {item.surah} </Text>
+                        <Text style={{color: Colors.gray}}>{item.reader}</Text>
+                      </View>
+                      <NeomorphBlur
+                        style={{
+                          shadowRadius: 3,
+                          borderRadius: 25,
+                          backgroundColor: Colors.white,
+                          width: 50,
+                          height: 50,
+                        }}>
+                        <TouchableWithoutFeedback
+                          onPress={() => {
+                            console.log('PLAY ... ');
+                            setselectedAudioName(item.surah);
+                          }}>
+                          <View
+                            style={{
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              flex: 1,
+                            }}>
+                            <Text style={{color: Colors.gray}}>play</Text>
+                          </View>
+                        </TouchableWithoutFeedback>
+                      </NeomorphBlur>
+                    </View>
+                  </TouchableWithoutFeedback>
+                </View>
+              )}
+            </View>
           );
         }}
       />
