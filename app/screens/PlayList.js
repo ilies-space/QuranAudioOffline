@@ -198,10 +198,10 @@ export default function PlayList({navigation}) {
                       shadowRadius: 2,
                       borderRadius: 10,
                       backgroundColor: Colors.blue2,
-                      width: phonewidth - 30,
+                      width: phonewidth - 25,
                       height: 60,
                       padding: 8,
-                      marginLeft: -5,
+                      marginLeft: -10,
                     }}>
                     <View>
                       <TouchableWithoutFeedback
