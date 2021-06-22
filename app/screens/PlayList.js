@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import {Colors} from '../theme/Colors';
 import {NeomorphBlur, Neomorph} from 'react-native-neomorph-shadows';
+import Play from '../assets/Icons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export default function PlayList({navigation}) {
   const [selectedAudioName, setselectedAudioName] = useState('');
@@ -238,7 +240,11 @@ export default function PlayList({navigation}) {
                                   justifyContent: 'center',
                                   flex: 1,
                                 }}>
-                                <Text style={{color: 'white'}}>PAUSE</Text>
+                                <AntDesign
+                                  name="pause"
+                                  size={18}
+                                  color={'white'}
+                                />
                               </View>
                             </TouchableWithoutFeedback>
                           </NeomorphBlur>
@@ -285,7 +291,11 @@ export default function PlayList({navigation}) {
                                 justifyContent: 'center',
                                 flex: 1,
                               }}>
-                              <Text style={{color: Colors.gray}}>play</Text>
+                              <AntDesign
+                                name="caretright"
+                                size={18}
+                                color={Colors.gray}
+                              />
                             </View>
                           </TouchableWithoutFeedback>
                         </NeomorphBlur>
