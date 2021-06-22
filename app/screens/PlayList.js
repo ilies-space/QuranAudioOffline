@@ -3,7 +3,7 @@ import {
   View,
   Text,
   FlatList,
-  Button,
+  Image,
   TouchableWithoutFeedback,
   Dimensions,
 } from 'react-native';
@@ -13,7 +13,10 @@ import Play from '../assets/Icons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export default function PlayList({navigation}) {
-  const [selectedAudioName, setselectedAudioName] = useState('');
+  const [selectedAudio, setselectedAudio] = useState({
+    surah: '',
+    reader: '',
+  });
   const QuranList = [
     {
       surah: 'Fatiha',
@@ -92,7 +95,7 @@ export default function PlayList({navigation}) {
             color: 'gray',
             marginVertical: 10,
           }}>
-          {selectedAudioName}
+          {selectedAudio.surah} - {selectedAudio.reader}
         </Text>
       </View>
 
@@ -155,7 +158,14 @@ export default function PlayList({navigation}) {
               justifyContent: 'center',
               flex: 1,
             }}>
-            <Text>IMG</Text>
+            <Image
+              source={require('../assets/quranimg.jpg')}
+              style={{
+                height: 130,
+                width: 130,
+                borderRadius: 60,
+              }}
+            />
           </View>
         </Neomorph>
 
@@ -194,7 +204,7 @@ export default function PlayList({navigation}) {
                   padding: 5,
                   marginVertical: 5,
                 }}>
-                {selectedAudioName == item.surah ? (
+                {selectedAudio.surah == item.surah ? (
                   //  AudiocurrentlyPlaying
                   <Neomorph
                     style={{
@@ -235,7 +245,10 @@ export default function PlayList({navigation}) {
                             }}>
                             <TouchableWithoutFeedback
                               onPress={() => {
-                                setselectedAudioName('');
+                                setselectedAudio({
+                                  surah: '',
+                                  reader: '',
+                                });
                               }}>
                               <View
                                 style={{
@@ -286,7 +299,10 @@ export default function PlayList({navigation}) {
                           <TouchableWithoutFeedback
                             onPress={() => {
                               console.log('PLAY ... ');
-                              setselectedAudioName(item.surah);
+                              setselectedAudio({
+                                surah: item.surah,
+                                reader: item.reader,
+                              });
                             }}>
                             <View
                               style={{
