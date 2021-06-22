@@ -12,6 +12,8 @@ target 'QuranAudioOffline' do
     :hermes_enabled => false
   )
 
+  pod 'ReactNativeART', :path => '../node_modules/@react-native-community/art'
+
   target 'QuranAudioOfflineTests' do
     inherit! :complete
     # Pods for testing
